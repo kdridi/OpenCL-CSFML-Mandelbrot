@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+cd $(dirname $0)/..
+
+rm -rf build/makefile
+mkdir -p build/makefile
+cd build/makefile
+
+cmake ../.. \
+	-G "Unix Makefiles"
+
+make VERBOSE=1
+./mandelbrot
