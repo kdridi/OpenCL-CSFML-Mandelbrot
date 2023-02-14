@@ -7,10 +7,13 @@
 //
 
 #include <assert.h>
+
 #include <stdio.h>
 
 #include <SFML/Graphics.h>
-#include <OpenCL/OpenCL.h>
+
+#define CL_TARGET_OPENCL_VERSION 300
+#include <CL/cl.h>
 
 typedef cl_double t_double;
 typedef cl_uint t_uint;
@@ -303,7 +306,7 @@ cl_int clGetPlatformAndDeviceIDs(cl_platform_id *pid, cl_device_id *did)
     cl_uint ds;
     cl_platform_id pids[1024];
     cl_device_id dids[1024];
-    cl_bool first = true;
+    cl_bool first = CL_TRUE;
     cl_uint max = 0;
     cl_int err;
     
@@ -330,18 +333,18 @@ cl_int clGetPlatformAndDeviceIDs(cl_platform_id *pid, cl_device_id *did)
             if (err != CL_SUCCESS)
                 return (err);
             
-            if (first == true || n > max)
+            if (first == CL_TRUE || n > max)
             {
                 *pid = pids[i];
                 *did = dids[j];
-                first = false;
+                first = CL_FALSE;
                 max = n;
             }
         }
     }
     assert(max > 0);
     
-    if (true) {
+    if (CL_TRUE) {
         char name[1024];
         
         err = clGetPlatformInfo(*pid, CL_PLATFORM_NAME, sizeof(name) / sizeof(*name), &name, NULL);
