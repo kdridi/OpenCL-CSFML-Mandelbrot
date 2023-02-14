@@ -9,7 +9,6 @@
 #include <assert.h>
 
 #include <stdio.h>
-#include <stdbool.h>
 
 #include <SFML/Graphics.h>
 
@@ -307,7 +306,7 @@ cl_int clGetPlatformAndDeviceIDs(cl_platform_id *pid, cl_device_id *did)
     cl_uint ds;
     cl_platform_id pids[1024];
     cl_device_id dids[1024];
-    cl_bool first = true;
+    cl_bool first = CL_TRUE;
     cl_uint max = 0;
     cl_int err;
     
@@ -334,18 +333,18 @@ cl_int clGetPlatformAndDeviceIDs(cl_platform_id *pid, cl_device_id *did)
             if (err != CL_SUCCESS)
                 return (err);
             
-            if (first == true || n > max)
+            if (first == CL_TRUE || n > max)
             {
                 *pid = pids[i];
                 *did = dids[j];
-                first = false;
+                first = CL_FALSE;
                 max = n;
             }
         }
     }
     assert(max > 0);
     
-    if (true) {
+    if (CL_TRUE) {
         char name[1024];
         
         err = clGetPlatformInfo(*pid, CL_PLATFORM_NAME, sizeof(name) / sizeof(*name), &name, NULL);
@@ -511,7 +510,7 @@ void framebuffer_draw(t_framebuffer *self)
     clock_t t1 = clock() / (CLOCKS_PER_SEC / 1000);
     
     if(camera.keyD == sfTrue)
-        printf("GPU enabled: %s | Time : %lu ms\n", camera.keyG ? "true " : "false", t1 - t0);
+        printf("GPU enabled: %s | Time : %lu ms\n", camera.keyG ? "CL_TRUE " : "CL_FALSE", t1 - t0);
 }
 
 
