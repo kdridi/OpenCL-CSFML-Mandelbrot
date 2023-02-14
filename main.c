@@ -7,10 +7,14 @@
 //
 
 #include <assert.h>
+
 #include <stdio.h>
+#include <stdbool.h>
 
 #include <SFML/Graphics.h>
-#include <OpenCL/OpenCL.h>
+
+#define CL_TARGET_OPENCL_VERSION 300
+#include <CL/cl.h>
 
 typedef cl_double t_double;
 typedef cl_uint t_uint;
