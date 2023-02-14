@@ -510,7 +510,7 @@ void framebuffer_draw(t_framebuffer *self)
     clock_t t1 = clock() / (CLOCKS_PER_SEC / 1000);
     
     if(camera.keyD == sfTrue)
-        printf("GPU enabled: %s | Time : %lu ms\n", camera.keyG ? "CL_TRUE " : "CL_FALSE", t1 - t0);
+        printf("GPU enabled: %s | Time : %lu ms\n", camera.keyG ? "true " : "false", t1 - t0);
 }
 
 
